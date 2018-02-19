@@ -23,17 +23,14 @@ function Word(word) {
     };
 
 }
-var farley = new Word("chicken")
-farley.letterCheck()
-// console.log(farley.letterObj)
-// console.log(farley.wordReturn())
+// var farley = new Word("chicken")
+// farley.letterCheck()
 
 
 
 
-module.exports = {
-    Word: Word,
-}
+
+module.exports = Word
 
 // Contains a constructor, Word that depends on the Letter constructor. This is used to create an object representing the current word the user is attempting to guess. That means the constructor should define:
 // An array of new Letter objects representing the letters of the underlying word
