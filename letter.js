@@ -17,10 +17,8 @@
  }
 
 
+ module.exports = Letter
 
- module.exports = {
-     Letter: Letter,
- }
 
  //Contains a constructor, Letter. This constructor should be able to either display an underlying character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter. That means the constructor should define:
  // A string value to store the underlying character for the letter
