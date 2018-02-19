@@ -3,15 +3,16 @@ var Letter = require("./letter.js");
 function Word(word) {
     this.word = word
     this.letterObj = [];
+    this.currentWord = [];
     this.wordReturn = function() {
         for (var i = 0; i < this.word.length; i++) {
              var newLetter = new Letter(this.word[i])
              newLetter.guessCheck()
             this.letterObj.push(newLetter)
-
-            // "".concat(this.letterObj)
-
-            // return this.word[i]
+            var wordParts = this.letterObj[i].guessCheck()
+            this.currentWord.push(wordParts)
+            var wholeWord = this.currentWord.join("")
+             console.log(wholeWord)
             
         }
         
@@ -27,12 +28,10 @@ function Word(word) {
 }
 var farley = new Word("chicken")
 farley.wordReturn()
-console.log(farley.letterObj[0].guessCheck())
-// farley.letterObj.splice(",")
+// console.log(farley.letterObj)
+// console.log(farley.wordReturn())
 
-// var boaty = "".concat(farley.letterObj)
-// boaty.replace(",", " ")
-// console.log(boaty)
+
 
 
 module.exports = {
