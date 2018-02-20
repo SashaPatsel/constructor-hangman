@@ -4,28 +4,33 @@ function Word(word) {
     this.word = word
     this.letterObj = [];
     this.currentWord = [];
+    this.houseKeeping = function() {
+      this.currentWord = [];
+    }
     this.wordReturn = function() {
         for (var i = 0; i < this.word.length; i++) {
             var newLetter = new Letter(this.word[i])
             newLetter.guessCheck()
             this.letterObj.push(newLetter)
+
             var wordParts = this.letterObj[i].guessCheck()
             this.currentWord.push(wordParts)
+
             var wholeWord = this.currentWord.join("")
         }
         return wholeWord;
     }
-    this.letterCheck = function(ltr) {
-        var newLetter = new Letter(ltr)
+    this.letterCheck = function(ltr) { 
         for (var i = 0; i < this.letterObj.length; i++) {
-            newLetter.goodGuess(this.letterObj[i].ltr)
+            this.letterObj[i].goodGuess(ltr)
         }
     };
 
 }
 // var farley = new Word("chicken")
-// farley.letterCheck()
-
+// farley.wordReturn()
+// farley.letterCheck("c")
+// console.log(farley.letterObj[0])
 
 
 

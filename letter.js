@@ -8,9 +8,9 @@
           return " _ "
          }
      }
-     this.goodGuess = function(char) {
-         if (char === this.ltr) {
-             guess = true;
+     this.goodGuess = function(userGuess) {
+         if (userGuess == this.ltr) {
+             this.guess = true;
          }
      }
 

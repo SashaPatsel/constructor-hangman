@@ -9,17 +9,43 @@ var inquirer = require("inquirer");
 var guessesRemaining = 8;
 var correctWords = 0;
 var wbIndex = 0;
+var correctLetters = 0;
 
 
 
 var wordBank = ["boxer", "hound", "poodle", "labrador", "terrier", "spaniel", "daschund"]
+var gameWord = new Word(wordBank[wbIndex]);
 
 function playGame() {
 
-    var gameWord = new Word(wordBank[wbIndex])
+    // var initWord = gameWord.wordReturn()
+    //beginning of game
+    // if (wbIndex <= 0) {
+    //     console.log("\nWelcome to Dog Hangman!\n\nYou will have 8 tries to guess the type of dog correctly.\n\nIf you get it right, on to the next one.\n\nIf not... all the dogs run away.\n")
+    // }
 
-    console.log(gameWord.wordReturn())
+    //game loop:
+    if (guessesRemaining > 0) {
+        // console.log("Word: ", initWord, "\n")
+        inquirer.prompt([{
+            name: "letter",
+            message: "Guess a letter:"
+        }]).then(function(answers) {
+            gameWord.houseKeeping();
+            gameWord.letterCheck(answers.letter)
+            console.log(gameWord.wordReturn())
+            guessesRemaining--
+            console.log(guessesRemaining)
+
+            playGame()
+        });
+
+    } else {
+        console.log("Game Over")
+    }
 }
+
+
 playGame()
 
 
