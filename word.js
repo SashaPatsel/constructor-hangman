@@ -2,10 +2,14 @@ var Letter = require("./letter.js");
 
 function Word(word) {
     this.word = word
+    //Storage for letter objects
     this.letterObj = [];
+    //For dispay purposes
     this.currentWord = [];
+    this.scoreBoard = 0
     this.houseKeeping = function() {
-      this.currentWord = [];
+        this.currentWord = [];
+        this.scoreBoard = 0
     }
     this.wordReturn = function() {
         for (var i = 0; i < this.word.length; i++) {
@@ -17,20 +21,21 @@ function Word(word) {
             this.currentWord.push(wordParts)
 
             var wholeWord = this.currentWord.join("")
+            if (this.letterObj[i].guess === true) {
+                this.scoreBoard++;
+                console.log("waz gud")
+            }
         }
         return wholeWord;
     }
-    this.letterCheck = function(ltr) { 
+    this.letterCheck = function(ltr) {
         for (var i = 0; i < this.letterObj.length; i++) {
             this.letterObj[i].goodGuess(ltr)
         }
     };
-
 }
-// var farley = new Word("chicken")
-// farley.wordReturn()
-// farley.letterCheck("c")
-// console.log(farley.letterObj[0])
+
+
 
 
 

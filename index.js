@@ -34,9 +34,14 @@ function playGame() {
             gameWord.houseKeeping();
             gameWord.letterCheck(answers.letter)
             console.log(gameWord.wordReturn())
-            guessesRemaining--
-            console.log(guessesRemaining)
-
+            // guessesRemaining--
+            // console.log(guessesRemaining)
+            if (gameWord.scoreBoard === gameWord.word.length) {
+                wbIndex++
+            }
+            console.log("scoreBoard: ", gameWord.scoreBoard)
+            console.log("word.length: ", gameWord.word.length)
+            console.log("wbi: ", wbIndex)
             playGame()
         });
 
