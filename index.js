@@ -6,7 +6,7 @@ var inquirer = require("inquirer");
 
 
 //Global vars:
-var guessesRemaining = 8;
+var guessesRemaining = 10;
 var correctWords = 0;
 var wbIndex = 0;
 var correctLetters = 0;
@@ -34,14 +34,16 @@ function playGame() {
             gameWord.houseKeeping();
             gameWord.letterCheck(answers.letter)
             console.log(gameWord.wordReturn())
-            // guessesRemaining--
-            // console.log(guessesRemaining)
+            guessesRemaining--
+            console.log(guessesRemaining)
             if (gameWord.scoreBoard === gameWord.word.length) {
                 wbIndex++
+                guessesRemaining = 10;
+                gameWord = new Word(wordBank[wbIndex]);
+            } else if (answers.letter.length > 1) {
+              guessesRemaining ++;
+              console.log("Whoops, try guessing only one letter")
             }
-            console.log("scoreBoard: ", gameWord.scoreBoard)
-            console.log("word.length: ", gameWord.word.length)
-            console.log("wbi: ", wbIndex)
             playGame()
         });
 

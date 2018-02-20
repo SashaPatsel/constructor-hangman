@@ -7,6 +7,7 @@ function Word(word) {
     //For dispay purposes
     this.currentWord = [];
     this.scoreBoard = 0
+    //resests in order to measure accurate values
     this.houseKeeping = function() {
         this.currentWord = [];
         this.scoreBoard = 0
@@ -23,7 +24,6 @@ function Word(word) {
             var wholeWord = this.currentWord.join("")
             if (this.letterObj[i].guess === true) {
                 this.scoreBoard++;
-                console.log("waz gud")
             }
         }
         return wholeWord;
