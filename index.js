@@ -20,9 +20,9 @@ function playGame() {
 
     // var initWord = gameWord.wordReturn()
     //beginning of game
-    // if (wbIndex <= 0) {
-    //     console.log("\nWelcome to Dog Hangman!\n\nYou will have 8 tries to guess the type of dog correctly.\n\nIf you get it right, on to the next one.\n\nIf not... all the dogs run away.\n")
-    // }
+    if (wbIndex <= 0 && guessesRemaining === 10) {
+        console.log("\nWelcome to Dog Hangman!\n\nYou will have 8 tries to guess the type of dog correctly.\n\nIf you get it right, on to the next one.\n\nIf not... all the dogs run away.\n")
+    }
 
     //game loop:
     if (guessesRemaining > 0) {
@@ -34,10 +34,13 @@ function playGame() {
             gameWord.houseKeeping();
             gameWord.letterCheck(answers.letter)
             console.log(gameWord.wordReturn())
-            guessesRemaining--
+            if (!gameWord.word.includes(answers.letter)) {
+              guessesRemaining--
+            }
             console.log(guessesRemaining)
             if (gameWord.scoreBoard === gameWord.word.length) {
                 wbIndex++
+                correctWords++
                 guessesRemaining = 10;
                 gameWord = new Word(wordBank[wbIndex]);
             } else if (answers.letter.length > 1) {
@@ -47,7 +50,10 @@ function playGame() {
             playGame()
         });
 
-    } else {
+    }else if (correctWords === wordBank.length){
+      console.log("Congrats, you know all the dogs")
+    }
+     else {
         console.log("Game Over")
     }
 }
@@ -55,9 +61,3 @@ function playGame() {
 
 playGame()
 
-
-
-
-// index.js: The file containing the logic for the course of the game, which depends on Word.js and:
-// Randomly selects a word and uses the Word constructor to store it
-// Prompts the user for each guess and keeps track of the user's remaining guesses
