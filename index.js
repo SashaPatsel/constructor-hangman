@@ -21,7 +21,7 @@ function playGame() {
     // var initWord = gameWord.wordReturn()
     //beginning of game
     if (wbIndex <= 0 && guessesRemaining === 10) {
-        console.log("\nWelcome to Dog Hangman!\n\nYou will have 8 tries to guess the type of dog correctly.\n\nIf you get it right, on to the next one.\n\nIf not... all the dogs run away.\n")
+        console.log("\nWelcome to Dog Hangman!\n\nYou will have 10 tries to guess the type of dog correctly.\n\nIf you get it right, on to the next one.\n\nIf not... all the dogs run away.\n\n When first prompted to enter a letter, press any key to begin.")
     }
 
     //game loop:
@@ -34,19 +34,24 @@ function playGame() {
             gameWord.houseKeeping();
             gameWord.letterCheck(answers.letter)
             console.log(gameWord.wordReturn())
+            //Keeps track of incorrect guesses
             if (!gameWord.word.includes(answers.letter)) {
               guessesRemaining--
             }
-            console.log(guessesRemaining)
+            console.log("Guesses remaining: ", guessesRemaining)
+            //Sets the next round
             if (gameWord.scoreBoard === gameWord.word.length) {
                 wbIndex++
                 correctWords++
                 guessesRemaining = 10;
                 gameWord = new Word(wordBank[wbIndex]);
+                console.log("Woohoo, on to the next round! Press any key to begin")
+                //If user tries to input 
             } else if (answers.letter.length > 1) {
               guessesRemaining ++;
               console.log("Whoops, try guessing only one letter")
             }
+
             playGame()
         });
 
